@@ -4,6 +4,12 @@ use CGI::Wiki::TestLib;
 use Test::More;
 
 my $iterator = CGI::Wiki::TestLib->new_wiki_maker;
+
+unless ( $iterator->number ) {
+    plan skip_all => "No backends configured";
+    exit 0;
+}
+
 plan tests => ( $iterator->number * 3 );
 
 while ( my $wiki = $iterator->new_wiki ) {

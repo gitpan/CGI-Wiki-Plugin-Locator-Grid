@@ -3,7 +3,7 @@ package CGI::Wiki::Plugin::Locator::Grid;
 use strict;
 
 use vars qw( $VERSION @ISA );
-$VERSION = '0.02';
+$VERSION = '0.03';
 
 use Carp qw( croak );
 use CGI::Wiki::Plugin;
