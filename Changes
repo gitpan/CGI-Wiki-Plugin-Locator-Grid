@@ -1,0 +1,3 @@
+0.01    23 November 2004
+        Initial release.  This module is a generalisation from version 0.09
+          of CGI::Wiki::Plugin::Locator::UK.
