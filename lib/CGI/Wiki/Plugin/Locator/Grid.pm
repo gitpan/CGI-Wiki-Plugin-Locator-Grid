@@ -3,7 +3,7 @@ package CGI::Wiki::Plugin::Locator::Grid;
 use strict;
 
 use vars qw( $VERSION @ISA );
-$VERSION = '0.01';
+$VERSION = '0.02';
 
 use Carp qw( croak );
 use CGI::Wiki::Plugin;
@@ -240,6 +240,11 @@ sub find_within_distance {
     # Postgres is a fussy bugger.
     if ( ref $store eq "CGI::Wiki::Store::Pg" ) {
         $sql =~ s/metadata_value/metadata_value::integer/gs;
+    }
+    # SQLite 3 is even fussier.
+    if ( ref $store eq "CGI::Wiki::Store::SQLite"
+         && $DBD::SQLite::VERSION >= "1.00" ) {
+        $sql =~ s/metadata_value/metadata_value+0/gs; # yuck
     }
     my $sth = $dbh->prepare($sql);
     $sth->execute;

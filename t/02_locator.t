@@ -7,7 +7,7 @@ my $iterator = CGI::Wiki::TestLib->new_wiki_maker;
 plan tests => ( $iterator->number * 21 );
 
 while ( my $wiki = $iterator->new_wiki ) {
-
+      print "# Store: " . (ref $wiki->store) . "\n";
       my $locator = eval { CGI::Wiki::Plugin::Locator::Grid->new; };
       is( $@, "", "'new' doesn't croak" );
       isa_ok( $locator, "CGI::Wiki::Plugin::Locator::Grid" );
